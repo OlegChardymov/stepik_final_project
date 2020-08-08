@@ -20,7 +20,7 @@ class ProductPage(BasePage):
         assert "catalogue" in self.browser.current_url, "'catalogue' not in current url"
 
     def should_be_add_to_basket_btn(self):
-        assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET), "Login form is not present"
+        assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET), "Basket btn is not present"
 
     def should_be_success_basket_msg(self):
         assert self.is_element_present(*ProductPageLocators.BASKET_SUCCESS), "Basket success msg is not present"
