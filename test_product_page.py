@@ -1,10 +1,11 @@
 import pytest
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 from .pages.product_page import ProductPageLocators
 
 
-# add to basket
+#  basket
 @pytest.mark.add_to_basket
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
@@ -26,6 +27,17 @@ def test_guest_can_add_product_to_basket(browser, link):
     browser.find_element(*ProductPageLocators.ADD_TO_BASKET).click()
     page.solve_quiz_and_get_code()
     page.should_match_product_and_basket()
+
+
+@pytest.mark.go_to_basket
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = BasketPage(browser, link)
+    page.open()
+    page.go_to_basket_page()
+    page.should_be_basket_page()
+    page.should_be_empty_basket()
+    page.should_be_empty_basket_text()
 
 
 # login page from product page
