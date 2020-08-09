@@ -13,17 +13,25 @@ class ProductPage(BasePage):
         self.should_match_product_and_basket_names()
         self.should_match_product_and_basket_price()
 
-    def should_not_be_category_url(self):  #checking if we are not in category
-        assert "category" not in self.browser.current_url, "'category' in current url"
-
     def should_be_product_url(self):
         assert "catalogue" in self.browser.current_url, "'catalogue' not in current url"
+
+    def should_not_be_category_url(self):  #checking if we are not in category
+        assert "category" not in self.browser.current_url, "'category' in current url"
 
     def should_be_add_to_basket_btn(self):
         assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET), "Basket btn is not present"
 
     def should_be_success_basket_msg(self):
         assert self.is_element_present(*ProductPageLocators.BASKET_SUCCESS), "Basket success msg is not present"
+
+    def should_not_be_success_message(self):
+        assert self.is_element_not_present(*ProductPageLocators.BASKET_SUCCESS), \
+            "Success message is presented, but should not be"
+
+    def should_success_basket_msg_disappear(self):
+        assert self.is_disappeared(*ProductPageLocators.BASKET_SUCCESS), \
+            "Success message is presented, but should be disappeared"
 
     def should_match_product_and_basket_names(self):
         assert self.browser.find_element(*ProductPageLocators.BASKET_NAME).text == \
