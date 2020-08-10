@@ -3,14 +3,13 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    LOGOUT_LINK = (By.CSS_SELECTOR, "#logout_link")
     BASKET_BTN = (By.CSS_SELECTOR, ".basket-mini .btn-group .btn:first-child")
     # should be first on page ^
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
 class MainPageLocators():
-    MAIN_LINK = "http://selenium1py.pythonanywhere.com/"
+    pass
 
 
 class LoginPageLocators():
